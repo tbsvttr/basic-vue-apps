@@ -13,7 +13,7 @@
 <body>
   <div id="app">
     <h4>{{product}}</h4>
-    <img src="http://via.placeholder.com/350x150" v-bind:alt="product + ' - ' + description" :title="product + ' - ' + description">
+    <img src="http://via.placeholder.com/350x150" :alt="imageDesc()" :title="imageDesc()">
     <p>{{description}}</p>
   </div>
 
@@ -23,6 +23,11 @@
       data: {
         product: 'Toller Artikel',
         description: 'Sein Geld wert.'
+      },
+      methods: {
+        imageDesc: function () {
+          return this.product + ' - ' + this.description;
+        }
       }
     })
   </script>
