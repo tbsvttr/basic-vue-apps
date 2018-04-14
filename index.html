@@ -7,23 +7,21 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 
-  <!-- Import Vue.js development version, includes helpful console warnings -->
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
-  <!-- Area for Vue to take control over. -->
   <div id="app">
-    {{message}}
+    <h4>{{product}}</h4>
+    <p>{{description}}</p>
   </div>
 
-  <!-- This script tag gets loaded after all other DOM elements. -->
   <script>
-    // Minimal Hello World Vue App.
-    var app = new Vue({ // Initialize a Vue instance.
-      el: '#app', // Where to mount this Vue instance.
-      data: { // Data object.
-        message: 'Hello Vue!' // Key-value pair of Data object.
+    var app = new Vue({
+      el: '#app',
+      data: {
+        product: 'Toller Artikel',
+        description: 'Sein Geld wert.'
       }
     })
   </script>
