@@ -15,7 +15,7 @@
     <img src="http://via.placeholder.com/350x150" :alt="imageDesc()" :title="imageDesc()">
     <p>{{description}}</p>
 
-    <!--Very simple implementation of conditional rendering. -->
+    <!--More complex conditional rendering with if, else-if, and else. -->
     <p v-if="stock > 10">In Stock</p>
     <p v-else-if="stock < 10 && stock > 0">Almost sold out!</p>
     <p v-else="stock">Out of Stock</p>
