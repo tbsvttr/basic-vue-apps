@@ -8,6 +8,16 @@
   <title>Document</title>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    button {
+      padding: 15px;
+      border: solid 2px black;
+    }
+
     .product {
       border: 1px solid black;
       padding: 15px;
@@ -16,13 +26,30 @@
 
     .image {
       max-width: 100%;
+    }
 
+    .header {
+      position: relative;
+      width: 100%;
+      height: 100px;
+      background: green;
+    }
+
+    .cart {
+      color: white;
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin: 10px;
     }
   </style>
 </head>
 
 <body>
   <div id="app">
+    <div class="header">
+      <div class="cart">Cart: {{cart}}</div>
+    </div>
 
     <div v-for="product in products" class="product">
 
@@ -39,6 +66,7 @@
       <p v-else="product.stock">Out of Stock</p>
       <p v-if="product.stock">{{product.price.currency + product.price.main + '.' + product.price.fractional }}</p>
 
+      <button @click="cart = cart + 1">Add to Cart</button>
     </div>
 
   </div>
@@ -47,6 +75,7 @@
     var app = new Vue({
       el: '#app',
       data: {
+        cart: 0,
         products: [
           {
             name: 'Toller Artikel',
