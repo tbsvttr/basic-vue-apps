@@ -7,15 +7,27 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    .product {
+      border: 1px solid black;
+      padding: 15px;
+      margin: 15px;
+    }
+
+    .image {
+      max-width: 100%;
+
+    }
+  </style>
 </head>
 
 <body>
   <div id="app">
 
-    <div v-for="product in products">
+    <div v-for="product in products" class="product">
 
       <h4>{{product.name}}</h4>
-      <img src="http://via.placeholder.com/350x150" :alt="imageDesc()" :title="imageDesc()">
+      <img src="http://via.placeholder.com/350x150" :alt="imageDesc()" :title="imageDesc()" class="image">
       <p>{{product.description}}</p>
 
       <ul v-for="ingredient in product.ingredients">
