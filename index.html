@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
@@ -15,6 +14,11 @@
     <h4>{{product}}</h4>
     <img src="http://via.placeholder.com/350x150" :alt="imageDesc()" :title="imageDesc()">
     <p>{{description}}</p>
+
+    <!--Very simple implementation of conditional rendering. -->
+    <p v-if="inStock">In Stock</p>
+    <p v-if="!inStock">Out of Stock</p>
+    <p v-if="inStock">{{price.currency + price.main + '.' + price.fractional }}</p>
   </div>
 
   <script>
@@ -22,10 +26,16 @@
       el: '#app',
       data: {
         product: 'Toller Artikel',
-        description: 'Sein Geld wert.'
+        description: 'Sein Geld wert.',
+        price: { // Values of Data object can have any type, even objects.
+          main: 10,
+          fractional: 20,
+          currency: 'US$'
+        },
+        inStock: true // ... or booleans.
       },
-      methods: { // Methods object.
-        imageDesc: function () { // Method in Methods object.
+      methods: {
+        imageDesc: function () {
           return this.product + ' - ' + this.description;
         }
       }
