@@ -68,7 +68,7 @@
 <body>
   <div id="app">
     <div class="header">
-      <div class="cart">Cart: {{cart}}</div>
+      <div class="cart" :style="{ fontSize: 16 + (cart *2) + 'px' }">Cart: {{cart}}</div>
     </div>
 
     <div v-for="product in products" class="product">
