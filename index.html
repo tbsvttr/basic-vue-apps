@@ -14,8 +14,13 @@
     }
 
     button {
+      color: black;
       padding: 15px;
       border: solid 2px black;
+    }
+
+    .disabledButton {
+      background: gray;
     }
 
     .product {
@@ -88,7 +93,7 @@
       <p v-else="product.stock">Out of Stock</p>
       <p v-if="product.stock">{{product.price.currency + product.price.main + '.' + product.price.fractional }}</p>
 
-      <button @click="cart = cart + 1">Add to Cart</button>
+      <button @click="cart = cart + 1" :class="{ disabledButton: !product.stock }" :disabled="!product.stock">Add to Cart</button>
     </div>
 
   </div>
