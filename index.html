@@ -11,34 +11,55 @@
 
 <body>
   <div id="app">
-    <h4>{{product}}</h4>
-    <img src="http://via.placeholder.com/350x150" :alt="imageDesc()" :title="imageDesc()">
-    <p>{{description}}</p>
 
-    <!-- Simple case of list rendering and looping. -->
-    <ul v-for="ingredient in ingredients">
-      <li>{{ingredient}}</li>
-    </ul>
+    <div v-for="product in products">
 
-    <p v-if="stock > 10">In Stock</p>
-    <p v-else-if="stock < 10 && stock > 0">Almost sold out!</p>
-    <p v-else="stock">Out of Stock</p>
-    <p v-if="stock">{{price.currency + price.main + '.' + price.fractional }}</p>
+      <h4>{{product.name}}</h4>
+      <img src="http://via.placeholder.com/350x150" :alt="imageDesc()" :title="imageDesc()">
+      <p>{{product.description}}</p>
+
+      <ul v-for="ingredient in product.ingredients">
+        <li>{{ingredient}}</li>
+      </ul>
+
+      <p v-if="product.stock > 10">In Stock</p>
+      <p v-else-if="product.stock < 10 && product.stock > 0">Almost sold out!</p>
+      <p v-else="product.stock">Out of Stock</p>
+      <p v-if="product.stock">{{product.price.currency + product.price.main + '.' + product.price.fractional }}</p>
+
+    </div>
+
   </div>
 
   <script>
     var app = new Vue({
       el: '#app',
       data: {
-        product: 'Toller Artikel',
-        description: 'Sein Geld wert.',
-        ingredients: ['good stuff', 'bad stuff'], // A list.
-        price: {
-          main: 10,
-          fractional: 20,
-          currency: 'US$'
-        },
-        stock: 100
+        products: [
+          {
+            name: 'Toller Artikel',
+            description: 'Sein Geld wert.',
+            ingredients: ['good stuff', 'bad stuff'], // A list.
+            price: {
+              main: 10,
+              fractional: 20,
+              currency: 'US$'
+            },
+            stock: 100
+          },
+          {
+            name: 'Schöner Artikel',
+            description: 'Wunderbar.',
+            ingredients: ['nice stuff', 'ugly stuff'], // A list.
+            price: {
+              main: 20,
+              fractional: 10,
+              currency: 'British£'
+            },
+            stock: 100
+          }
+        ]
+
       },
       methods: {
         imageDesc: function () {
