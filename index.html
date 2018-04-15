@@ -24,10 +24,6 @@
       margin: 15px;
     }
 
-    .image {
-      max-width: 100%;
-    }
-
     .header {
       position: relative;
       width: 100%;
@@ -42,6 +38,20 @@
       top: 0;
       margin: 10px;
     }
+
+    .preview-images img {
+      max-width: 100px;
+      padding: 15px;
+      margin: 5px;
+      border: 1px solid black;
+    }
+
+    .image {
+      max-width: 385px;
+      padding: 15px;
+      margin: 5px;
+      border: 1px solid black;
+    }
   </style>
 </head>
 
@@ -54,11 +64,18 @@
     <div v-for="product in products" class="product">
 
       <h4>{{product.name}}</h4>
-      <img src="http://via.placeholder.com/350x150" :alt="imageDesc()" :title="imageDesc()" class="image">
+
+      <div v-if="product.images">
+        <div class="preview-images">
+          <img v-for="image in product.images" :src="image" :alt="imageDesc(product)" :title="imageDesc(product)" @mouseover="product.bigImage = image">
+        </div>
+        <img class="image" :src="product.bigImage" :alt="imageDesc(product)" :title="imageDesc(product)">
+      </div>
+
       <p>{{product.description}}</p>
 
-      <ul v-for="ingredient in product.ingredients">
-        <li>{{ingredient}}</li>
+      <ul>
+        <li v-for="ingredient in product.ingredients">{{ingredient}}</li>
       </ul>
 
       <p v-if="product.stock > 10">In Stock</p>
@@ -76,6 +93,7 @@
       el: '#app',
       data: {
         cart: 0,
+        selectedImage: '',
         products: [
           {
             name: 'Toller Artikel',
@@ -86,7 +104,13 @@
               fractional: 20,
               currency: 'US$'
             },
-            stock: 100
+            stock: 100,
+            images: [
+              'https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Toastbrot-1.jpg/475px-Toastbrot-1.jpg',
+              'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Mischbrot-1.jpg/480px-Mischbrot-1.jpg',
+              'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Wei%C3%9Fbrot-1.jpg/480px-Wei%C3%9Fbrot-1.jpg'
+            ],
+            bigImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Toastbrot-1.jpg/475px-Toastbrot-1.jpg'
           },
           {
             name: 'Schöner Artikel',
@@ -103,8 +127,11 @@
 
       },
       methods: {
-        imageDesc: function () {
-          return this.product + ' - ' + this.description;
+        imageDesc: function (product) {
+          return product.name + ' - ' + product.description;
+        },
+        selectImage: function (image) {
+          this.selectedImage = image;
         }
       }
     })
