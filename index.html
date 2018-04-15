@@ -89,43 +89,43 @@
   </div>
 
   <script>
+    var data = {
+      cart: 0,
+      selectedImage: '',
+      products: [
+        {
+          name: 'Toller Artikel',
+          description: 'Sein Geld wert.',
+          ingredients: ['good stuff', 'bad stuff'], // A list.
+          price: {
+            main: 10,
+            fractional: 20,
+            currency: 'US$'
+          },
+          stock: 100,
+          images: [
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Toastbrot-1.jpg/475px-Toastbrot-1.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Mischbrot-1.jpg/480px-Mischbrot-1.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Wei%C3%9Fbrot-1.jpg/480px-Wei%C3%9Fbrot-1.jpg'
+          ],
+          bigImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Toastbrot-1.jpg/475px-Toastbrot-1.jpg'
+        },
+        {
+          name: 'Schöner Artikel',
+          description: 'Wunderbar.',
+          ingredients: ['nice stuff', 'ugly stuff'], // A list.
+          price: {
+            main: 20,
+            fractional: 10,
+            currency: 'British£'
+          },
+          stock: 100
+        }
+      ]
+    };
     var app = new Vue({
       el: '#app',
-      data: {
-        cart: 0,
-        selectedImage: '',
-        products: [
-          {
-            name: 'Toller Artikel',
-            description: 'Sein Geld wert.',
-            ingredients: ['good stuff', 'bad stuff'], // A list.
-            price: {
-              main: 10,
-              fractional: 20,
-              currency: 'US$'
-            },
-            stock: 100,
-            images: [
-              'https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Toastbrot-1.jpg/475px-Toastbrot-1.jpg',
-              'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Mischbrot-1.jpg/480px-Mischbrot-1.jpg',
-              'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Wei%C3%9Fbrot-1.jpg/480px-Wei%C3%9Fbrot-1.jpg'
-            ],
-            bigImage: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Toastbrot-1.jpg/475px-Toastbrot-1.jpg'
-          },
-          {
-            name: 'Schöner Artikel',
-            description: 'Wunderbar.',
-            ingredients: ['nice stuff', 'ugly stuff'], // A list.
-            price: {
-              main: 20,
-              fractional: 10,
-              currency: 'British£'
-            },
-            stock: 100
-          }
-        ]
-
-      },
+      data: data,
       methods: {
         imageDesc: function (product) {
           return product.name + ' - ' + product.description;
