@@ -15,7 +15,11 @@
     <img src="http://via.placeholder.com/350x150" :alt="imageDesc()" :title="imageDesc()">
     <p>{{description}}</p>
 
-    <!--More complex conditional rendering with if, else-if, and else. -->
+    <!-- Simple case of list rendering and looping. -->
+    <ul v-for="ingredient in ingredients">
+      <li>{{ingredient}}</li>
+    </ul>
+
     <p v-if="stock > 10">In Stock</p>
     <p v-else-if="stock < 10 && stock > 0">Almost sold out!</p>
     <p v-else="stock">Out of Stock</p>
@@ -28,6 +32,7 @@
       data: {
         product: 'Toller Artikel',
         description: 'Sein Geld wert.',
+        ingredients: ['good stuff', 'bad stuff'], // A list.
         price: {
           main: 10,
           fractional: 20,
