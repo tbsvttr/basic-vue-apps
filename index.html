@@ -68,7 +68,7 @@
 <body>
   <div id="app">
     <div class="header">
-      <div class="cart" :style="{ fontSize: 16 + (cart *2) + 'px' }">Cart: {{cart}}</div>
+      <div class="cart" :style="{ fontSize: 16 + (cart *2) + 'px' }">Cart: {{cart}} / {{inventory}}</div>
     </div>
 
     <div v-for="product in products" class="product">
@@ -123,7 +123,7 @@
         {
           name: 'Schöner Artikel',
           description: 'Wunderbar.',
-          ingredients: ['nice stuff', 'ugly stuff'], // A list.
+          ingredients: ['nice stuff', 'ugly stuff'],
           price: {
             main: 20,
             fractional: 10,
@@ -136,6 +136,15 @@
     var app = new Vue({
       el: '#app',
       data: data,
+      computed: {
+        inventory: function () {
+          var counter = 0;
+          this.products.forEach(function (product) {
+            counter += product.stock;
+          });
+          return counter;
+        }
+      },
       methods: {
         imageDesc: function (product) {
           return product.name + ' - ' + product.description;
