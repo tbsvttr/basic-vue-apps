@@ -94,11 +94,27 @@
       <p v-if="product.stock">{{product.price.currency + product.price.main + '.' + product.price.fractional }}</p>
 
       <button @click="cart = cart + 1" :class="{ disabledButton: !product.stock }" :disabled="!product.stock">Add to Cart</button>
+      <twitter-button :title="product.name"></twitter-button>
     </div>
 
   </div>
 
   <script>
+    Vue.component('twitter-button', {
+      props: ['title'],
+      data: function () {
+        return {
+          text: "Twitter"
+        }
+      },
+      computed: {
+        twitterLink: function () {
+          return "https://twitter.com/intent/tweet?text=" + this.title;
+        }
+      },
+      template: '<a :href="twitterLink"><button style="background: lightblue; color: white;">{{text}}</button></a>'
+    })
+
     var data = {
       cart: 0,
       selectedImage: '',
