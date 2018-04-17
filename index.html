@@ -68,7 +68,7 @@
 <body>
   <div id="app">
     <div class="header">
-      <div class="cart" :style="{ fontSize: 16 + (cart *2) + 'px' }">Cart: {{cart}} / {{inventory}}</div>
+      <cart :cart="this.cart" :inventory="this.inventory" @empty-cart="cart = 0"></cart>
     </div>
 
     <div v-for="product in products" class="product">
@@ -100,6 +100,16 @@
   </div>
 
   <script>
+    Vue.component('cart', {
+      props: ['cart', 'inventory'],
+      methods: {
+        emptyCart: function () {
+          this.$emit("empty-cart");
+        }
+      },
+      template: '<div class="cart" :style="{ fontSize: 16 + (cart *2) + \'px\' }">Cart: {{cart}} / {{inventory}} (<span @click="emptyCart">leeren</span>)</div>'
+    })
+
     Vue.component('twitter-button', {
       props: ['title'],
       data: function () {
